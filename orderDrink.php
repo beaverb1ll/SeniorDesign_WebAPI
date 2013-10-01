@@ -36,7 +36,7 @@ error_reporting(E_ALL);
 	$dbHost="localhost"; // Host name 
 	$dbUsername="root"; // Mysql username 
 	$dbPassword="password"; // Mysql password 
-	$dbName="SD"; // Database name 
+	$dbName="new_schema"; // Database name 
 	// $tbl_name="customers"; // Table name 
 
 	// Connect to server and select databse.
@@ -50,15 +50,15 @@ error_reporting(E_ALL);
 	// $columnName = mysqli_real_escape_string($columnName);
 	// $searchInput = mysqli_real_escape_string($searchInput);
 
-	$query = 'SELECT ing0, ing1, ing2, ing3, ing4, ing5 FROM orderTable WHERE orderID="0"';
+	// $query = "SELECT ing0, ing1, ing2, ing3, ing4, ing5 FROM orderTable WHERE orderID=\"0\"";
 
-	$result = mysqli_query($dbCon, $query);
+	$result = mysqli_query($dbCon, "SELECT ing0, ing1, ing2, ing3, ing4, ing5 FROM orderTable WHERE orderID=\"0\"");
 
-	$row = mysql_fetch_array($result);
+	$row = mysqli_fetch_array($result);
 
-	if (!$row) {
-		returnFailedAllocate();		
-	}
+	//if (!$row) {
+	// 	returnFailedAllocate();		
+	// }
 
 	$cIngred0 = intval($row['ing0']);
 	$cIngred1 = intval($row['ing1']);
@@ -67,8 +67,10 @@ error_reporting(E_ALL);
 	$cIngred4 = intval($row['ing4']);
 	$cIngred5 = intval($row['ing5']);
 
+	echo $cIngred0;
 	if ($rIngred0 > 0) {
 		if ($cIngred0 - $rIngred0 < 0) {
+			echo "error ingredient";
 			returnFailedAllocate();
 		}
 		$cIngred0 = $cIngred0 - $rIngred0;
