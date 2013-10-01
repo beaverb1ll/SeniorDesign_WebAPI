@@ -40,7 +40,7 @@ error_reporting(E_ALL);
 	// $tbl_name="customers"; // Table name 
 
 	// Connect to server and select databse.
-	$dbCon = new mysqli("$dbHost", "$dbUsername", "$dbPassword", "$dbName");
+	$dbCon = mysqli_connect("$dbHost", "$dbUsername", "$dbPassword", "$dbName");
 
 	if (mysqli_connect_errno($dbCon)) {
     	echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -52,9 +52,9 @@ error_reporting(E_ALL);
 
 	$query = 'SELECT ing0, ing1, ing2, ing3, ing4, ing5 FROM orderTable WHERE orderID="0"';
 
-	$result = $dbCon->query($query);
+	$result = mysqli_query($dbCon, $query);
 
-	$row = mysql_fetch_row($result);
+	$row = mysql_fetch_array($result);
 
 	if (!$row) {
 		returnFailedAllocate();		
