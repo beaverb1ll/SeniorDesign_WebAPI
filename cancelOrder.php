@@ -2,7 +2,8 @@
 
 function returnFailed(){
 // return 0 for failed.
-	echo "{\"Success\":\"0\"}";
+	$arr = array ('success'=>0);
+    echo json_encode($arr);
 	die();
 
 }
@@ -10,7 +11,15 @@ ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
 
-$barcode = "15BFB983B4D9DF5AE8C9B0F0786ACACCD1";
+	if (!isset($_POST["barcode"])) {
+		returnFailedAllocate();
+	}
+
+	$barcode = $_POST["barcode"];
+
+// $barcode = "15BFB983B4D9DF5AE8C9B0F0786ACACCD1";
+
+
 
 	$dbHost="localhost"; // Host name 
 	$dbUsername="root"; // Mysql username 
