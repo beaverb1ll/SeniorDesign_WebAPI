@@ -18,8 +18,8 @@ function getGUID(){
 }
 
 function returnFailedAllocate(){
-
-	echo "{\"barcode\":\"-1\"}";
+	$arr = array ('barcode'=>-1);
+    echo json_encode($arr);
 	die();
 
 }
@@ -31,7 +31,26 @@ error_reporting(E_ALL);
 	$dbUsername="root"; // Mysql username 
 	$dbPassword="password"; // Mysql password 
 	$dbName="SD"; // Database name 
-	
+
+
+	if (!isset($_POST["rIngred0"])) {
+		returnFailedAllocate();
+	}
+	if (!isset($_POST["rIngred1"])) {
+		returnFailedAllocate();
+	}
+	if (!isset($_POST["rIngred2"])) {
+		returnFailedAllocate();
+	}
+	if (!isset($_POST["rIngred3"])) {
+		returnFailedAllocate();
+	}
+	if (!isset($_POST["rIngred4"])) {
+		returnFailedAllocate();
+	}
+	if (!isset($_POST["rIngred5"])) {
+		returnFailedAllocate();
+	}
 
 	if (!is_numeric($_POST["rIngred0"])) {
         // echo "ingred0 is NOT numeric", PHP_EOL;
@@ -146,7 +165,7 @@ error_reporting(E_ALL);
 		$cIngred5 = $cIngred5 - $rIngred5;
 	}
 
-	echo "got past ingred compares\n";
+	// echo "got past ingred compares\n";
 
 	$query = "UPDATE orderTable SET ing0=" . $cIngred0 . ", ing1=" . $cIngred1 . ", ing2=" . $cIngred2 . ", ing3=" . $cIngred3 . ", ing4=" . $cIngred4 . ", ing5=" . $cIngred5 . " WHERE orderID=\"0\"";
 
@@ -174,8 +193,7 @@ error_reporting(E_ALL);
 		returnFailedAllocate();
 	}
 
-	// sucess, return barcode
-	echo "\n{\"barcode\":\"".$barcode."\"}\n";
-
+	$arr = array ('barcode'=>$barcode);
+    echo json_encode($arr);
 
 ?>
