@@ -25,18 +25,16 @@ $barcode = "15BFB983B4D9DF5AE8C9B0F0786ACACCD1";
     	returnFailed();
 	} 
 
-	// $columnName = mysqli_real_escape_string($columnName);
-	// $searchInput = mysqli_real_escape_string($searchInput);
-
-	// echo "got past ingred compares\n";
+	if (!mysqli_set_charset($dbCon, "utf8")) {
+    	returnFailedAllocate();
+	}
 
 	// select orderTIme and subtract 600s (10 Mins) update orderTime
-
-	// $query = 'UPDATE orderTable SET expired="true" WHERE orderID="' . $barcode .'"';
-	
 	$query = "SELECT orderTime FROM orderTable WHERE orderID=\"" .$barcode . "\"";
 
-	$result = mysqli_query($dbCon, $query);
+	$safeQuery = mysqli_real_escape_string($dbCon, $query);
+
+	$result = mysqli_query($dbCon, $safeQuery);
 
 	$row = mysqli_fetch_array($result);
 
@@ -44,15 +42,14 @@ $barcode = "15BFB983B4D9DF5AE8C9B0F0786ACACCD1";
 	 	returnFailed();		
 	}
 
-
-
 	$orderTime = intval($row['orderTime']);
 	$orderTime = $orderTime - 600;
 
-
-
 	$query = 'UPDATE orderTable SET orderTime="' . $orderTime . '" WHERE orderID="' . $barcode .'"';
-	$result = mysqli_query($dbCon, $query);
+	
+	$safeQuery = mysqli_real_escape_string($dbCon, $query);
+	$result = mysqli_query($dbCon, $safeQuery);
+
 	$row = mysqli_fetch_array($result);
 	if (!$row) {
 	 	returnFailed();		

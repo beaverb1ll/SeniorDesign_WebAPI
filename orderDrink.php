@@ -47,12 +47,18 @@ error_reporting(E_ALL);
     	returnFailedAllocate();
 	} 
 
+	if (!mysqli_set_charset($dbCon, "utf8")) {
+    	returnFailedAllocate();
+	}
+
 	// $columnName = mysqli_real_escape_string($columnName);
 	// $searchInput = mysqli_real_escape_string($searchInput);
 
 	$query = "SELECT ing0, ing1, ing2, ing3, ing4, ing5 FROM orderTable WHERE orderID=\"0\"";
 
-	$result = mysqli_query($dbCon, $query);
+	$safeQuery = mysqli_real_escape_string($dbCon, $query);
+
+	$result = mysqli_query($dbCon, $safeQuery);
 
 	$row = mysqli_fetch_array($result);
 
@@ -76,7 +82,7 @@ error_reporting(E_ALL);
 		$cIngred0 = $cIngred0 - $rIngred0;
 	}
 
-	if ($rIngred0 > 1) {
+	if ($rIngred0 > 0) {
 		if ($cIngred1 - $rIngred1 < 0) {
 			// echo "error ingredient 1";
 			returnFailedAllocate();
@@ -121,7 +127,9 @@ error_reporting(E_ALL);
 	$query = "UPDATE orderTable SET ing0=" . $cIngred0 . ", ing1=" . $cIngred1 . ", ing2=" . $cIngred2 . ", ing3=" . $cIngred3 . ", ing4=" . $cIngred4 . ", ing5=" . $cIngred5 . " WHERE orderID=\"0\"";
 	
 	// echo $query;
-	$result = mysqli_query($dbCon, $query);
+	$safeQuery = mysqli_real_escape_string($dbCon, $query);
+
+	$result = mysqli_query($dbCon, $safeQuery);
 
 	if (!$result) {
 		// echo "Error updating reserved ingredients\n";
@@ -137,7 +145,9 @@ error_reporting(E_ALL);
 
 	$query = 'INSERT INTO orderTable (orderID, ing0, ing1, ing2, ing3, ing4, ing5, orderTime) VALUES ("' . $barcode.'", '.$rIngred0.', '.$rIngred1.', '.$rIngred2.', '.$rIngred3.', '.$rIngred4.', '.$rIngred5.', '.$time.')';
 	// echo $query;
-	$result = mysqli_query($dbCon, $query);
+	$safeQuery = mysqli_real_escape_string($dbCon, $query);
+
+	$result = mysqli_query($dbCon, $safeQuery);
 
 	if (!$result) {
 		// echo "Error inserting new drink order\n";
@@ -145,6 +155,7 @@ error_reporting(E_ALL);
 		returnFailedAllocate();
 	}
 
+	// sucess, return barcode
 	echo "\n{\"barcode\":\"".$barcode."\"}\n";
 
 
