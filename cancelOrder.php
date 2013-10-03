@@ -10,7 +10,7 @@ ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
 
-$barcode = "15BFB983B4D9DF5AE8C9B0F0786ACACCD1";
+$barcode = "1CBDBF4A54A52A622EC971E91BA8DE4B91";
 
 	$dbHost="localhost"; // Host name 
 	$dbUsername="root"; // Mysql username 
