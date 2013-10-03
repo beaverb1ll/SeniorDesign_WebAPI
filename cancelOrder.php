@@ -1,7 +1,7 @@
 <?php
 
 function returnFailed(){
-// return 0 for failed.
+// return 0 for failed.  
 	$arr = array ('success'=>0);
     echo json_encode($arr);
 	die();
@@ -62,7 +62,6 @@ error_reporting(E_ALL);
 	 	returnFailed();		
 	}
 
-	echo "{\"Success\":\"1\"}";
-
-
+	$arr = array ('success'=>1);
+    echo json_encode($arr);
 ?>
