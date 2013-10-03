@@ -41,9 +41,7 @@ error_reporting(E_ALL);
 	// select orderTIme and subtract 600s (10 Mins) update orderTime
 	$query = "SELECT orderTime FROM orderTable WHERE orderID=\"" .$barcode . "\"";
 
-	$safeQuery = mysqli_real_escape_string($dbCon, $query);
-
-	$result = mysqli_query($dbCon, $safeQuery);
+	$result = mysqli_query($dbCon, $query);
 
 	$row = mysqli_fetch_array($result);
 
@@ -56,8 +54,8 @@ error_reporting(E_ALL);
 
 	$query = 'UPDATE orderTable SET orderTime="' . $orderTime . '" WHERE orderID="' . $barcode .'"';
 	
-	$safeQuery = mysqli_real_escape_string($dbCon, $query);
-	$result = mysqli_query($dbCon, $safeQuery);
+	// $safeQuery = mysqli_real_escape_string($dbCon, $query);
+	$result = mysqli_query($dbCon, $query);
 
 	$row = mysqli_fetch_array($result);
 	if (!$row) {
