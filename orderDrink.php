@@ -25,19 +25,46 @@ function returnFailedAllocate(){
 }
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
-	
-	$rIngred0 = 10;
-	$rIngred1 = 11;
-	$rIngred2 = 12;
-	$rIngred3 = 13;
-	$rIngred4 = 14;
-	$rIngred5 = 15;
+
 
 	$dbHost="localhost"; // Host name 
 	$dbUsername="root"; // Mysql username 
 	$dbPassword="password"; // Mysql password 
 	$dbName="SD"; // Database name 
-	// $tbl_name="customers"; // Table name 
+	
+
+	if (!is_numeric($_POST["rIngred0"])) {
+        // echo "ingred0 is NOT numeric", PHP_EOL;
+        returnFailedAllocate();
+    }
+    if (!is_numeric($_POST["rIngred1"])) {
+        // echo "ingred1 is NOT numeric", PHP_EOL;
+        returnFailedAllocate();
+    }
+    if (!is_numeric($_POST["rIngred2"])) {
+        // echo "ingred2 is NOT numeric", PHP_EOL;
+        returnFailedAllocate();
+    }
+    if (!is_numeric($_POST["rIngred3"])) {
+        // echo "ingred3 is NOT numeric", PHP_EOL;
+        returnFailedAllocate();
+    }
+    if (!is_numeric($_POST["rIngred4"])) {
+        // echo "ingred4 is NOT numeric", PHP_EOL;
+        returnFailedAllocate();
+    }
+    if (!is_numeric($_POST["rIngred5"])) {
+        // echo "ingred5 is NOT numeric", PHP_EOL;
+        returnFailedAllocate();
+    }
+
+    // convert strings to integers
+	$rIngred0 = intval($_POST["rIngred0"]);
+	$rIngred1 = intval($_POST["rIngred1"]);
+	$rIngred2 = intval($_POST["rIngred2"]);
+	$rIngred3 = intval($_POST["rIngred3"]);
+	$rIngred4 = intval($_POST["rIngred4"]);
+	$rIngred5 = intval($_POST["rIngred5"]);
 
 	// Connect to server and select databse.
 	$dbCon = mysqli_connect("$dbHost", "$dbUsername", "$dbPassword", "$dbName");
@@ -48,6 +75,7 @@ error_reporting(E_ALL);
 	} 
 
 	if (!mysqli_set_charset($dbCon, "utf8")) {
+		// echo 'unable to change charset';
     	returnFailedAllocate();
 	}
 
@@ -55,14 +83,10 @@ error_reporting(E_ALL);
 	// $searchInput = mysqli_real_escape_string($searchInput);
 
 	$query = "SELECT ing0, ing1, ing2, ing3, ing4, ing5 FROM orderTable WHERE orderID=\"0\"";
-
-	$safeQuery = mysqli_real_escape_string($dbCon, $query);
-
-	$result = mysqli_query($dbCon, $safeQuery);
-
+	$result = mysqli_query($dbCon, $query);
 	$row = mysqli_fetch_array($result);
-
 	if (!$row) {
+		// echo 'unable to fetch row';
 	 	returnFailedAllocate();		
 	}
 
@@ -122,14 +146,11 @@ error_reporting(E_ALL);
 		$cIngred5 = $cIngred5 - $rIngred5;
 	}
 
-	// echo "got past ingred compares\n";
+	echo "got past ingred compares\n";
 
 	$query = "UPDATE orderTable SET ing0=" . $cIngred0 . ", ing1=" . $cIngred1 . ", ing2=" . $cIngred2 . ", ing3=" . $cIngred3 . ", ing4=" . $cIngred4 . ", ing5=" . $cIngred5 . " WHERE orderID=\"0\"";
-	
-	// echo $query;
-	$safeQuery = mysqli_real_escape_string($dbCon, $query);
 
-	$result = mysqli_query($dbCon, $safeQuery);
+	$result = mysqli_query($dbCon, $query);
 
 	if (!$result) {
 		// echo "Error updating reserved ingredients\n";
@@ -144,10 +165,8 @@ error_reporting(E_ALL);
 	$barcode = getGUID();
 
 	$query = 'INSERT INTO orderTable (orderID, ing0, ing1, ing2, ing3, ing4, ing5, orderTime) VALUES ("' . $barcode.'", '.$rIngred0.', '.$rIngred1.', '.$rIngred2.', '.$rIngred3.', '.$rIngred4.', '.$rIngred5.', '.$time.')';
-	// echo $query;
-	$safeQuery = mysqli_real_escape_string($dbCon, $query);
 
-	$result = mysqli_query($dbCon, $safeQuery);
+	$result = mysqli_query($dbCon, $query);
 
 	if (!$result) {
 		// echo "Error inserting new drink order\n";
