@@ -38,17 +38,13 @@ error_reporting(E_ALL);
         }
 
         // select orderTIme and subtract 600s (10 Mins) update orderTime
-        $query = "SELECT orderTime, expired FROM orderTable WHERE orderID=\"" .$barcode . "\"";
+        // a drink that is expired or picked up can not be canceld, so only get barcodes that are valid
+        $query = "SELECT orderTime FROM orderTable WHERE expired=\"false\" AND pickedUp=\"false\" AND orderID=\"" .$barcode . "\"";
 
         $result = mysqli_query($dbCon, $query);
-
         $row = mysqli_fetch_array($result);
         if (!$row) {
                 // echo "unable to fetch ordertime";
-                returnFailed();
-        }
-        if ($row['expired']==="true") {
-                echo "Order already expired";
                 returnFailed();
         }
 
