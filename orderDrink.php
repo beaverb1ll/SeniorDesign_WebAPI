@@ -87,7 +87,6 @@ error_reporting(E_ALL);
 
 	// Connect to server and select databse.
 	$dbCon = mysqli_connect("$dbHost", "$dbUsername", "$dbPassword", "$dbName");
-
 	if (mysqli_connect_errno($dbCon)) {
     	// echo "Failed to connect to MySQL: " . mysqli_connect_error();
     	returnFailedAllocate();
@@ -170,7 +169,6 @@ error_reporting(E_ALL);
 	$query = "UPDATE orderTable SET ing0=" . $cIngred0 . ", ing1=" . $cIngred1 . ", ing2=" . $cIngred2 . ", ing3=" . $cIngred3 . ", ing4=" . $cIngred4 . ", ing5=" . $cIngred5 . " WHERE orderID=\"0\"";
 
 	$result = mysqli_query($dbCon, $query);
-
 	if (!$result) {
 		// echo "Error updating reserved ingredients\n";
 		// echo mysqli_error($dbCon);
@@ -186,7 +184,6 @@ error_reporting(E_ALL);
 	$query = 'INSERT INTO orderTable (orderID, ing0, ing1, ing2, ing3, ing4, ing5, orderTime) VALUES ("' . $barcode.'", '.$rIngred0.', '.$rIngred1.', '.$rIngred2.', '.$rIngred3.', '.$rIngred4.', '.$rIngred5.', '.$time.')';
 
 	$result = mysqli_query($dbCon, $query);
-
 	if (!$result) {
 		// echo "Error inserting new drink order\n";
 		// echo mysqli_error($dbCon);
