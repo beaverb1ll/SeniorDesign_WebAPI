@@ -35,47 +35,47 @@ function getReservedAmount($aConnection, $aIngred) {
 
 
     if (!isset($_POST["rIngred0"])) {
-            returnFailedAllocate();
+            returnFailed();
     }
     if (!isset($_POST["rIngred1"])) {
-            returnFailedAllocate();
+            returnFailed();
     }
     if (!isset($_POST["rIngred2"])) {
-            returnFailedAllocate();
+            returnFailed();
     }
     if (!isset($_POST["rIngred3"])) {
-            returnFailedAllocate();
+            returnFailed();
     }
     if (!isset($_POST["rIngred4"])) {
-            returnFailedAllocate();
+            returnFailed();
     }
     if (!isset($_POST["rIngred5"])) {
-            returnFailedAllocate();
+            returnFailed();
     }
 
     if (!is_numeric($_POST["rIngred0"])) {
         // echo "ingred0 is NOT numeric", PHP_EOL;
-        returnFailedAllocate();
+        returnFailed();
     }
     if (!is_numeric($_POST["rIngred1"])) {
         // echo "ingred1 is NOT numeric", PHP_EOL;
-        returnFailedAllocate();
+        returnFailed();
     }
     if (!is_numeric($_POST["rIngred2"])) {
         // echo "ingred2 is NOT numeric", PHP_EOL;
-        returnFailedAllocate();
+        returnFailed();
     }
     if (!is_numeric($_POST["rIngred3"])) {
         // echo "ingred3 is NOT numeric", PHP_EOL;
-        returnFailedAllocate();
+        returnFailed();
     }
     if (!is_numeric($_POST["rIngred4"])) {
         // echo "ingred4 is NOT numeric", PHP_EOL;
-        returnFailedAllocate();
+        returnFailed();
     }
     if (!is_numeric($_POST["rIngred5"])) {
         // echo "ingred5 is NOT numeric", PHP_EOL;
-        returnFailedAllocate();
+        returnFailed();
     }
 
 
@@ -94,7 +94,7 @@ function getReservedAmount($aConnection, $aIngred) {
 
     if (!mysqli_set_charset($dbCon, "utf8")) {
         // echo "Failed to set charset";
-        returnFailedAllocate();
+        returnFailed();
     }
 
     $count = 0;
