@@ -8,6 +8,29 @@ function returnFailed(){
 
 }
 
+function updateSQL($aConnection, $aQuery) {
+    $result = mysqli_query($aConnection, $aQuery);
+    // $row = mysqli_fetch_array($result);
+    if (!$result) {
+//            echo "unable to update orderTable";
+            returnFailed();
+    }
+}
+
+function getReservedAmount($aConnection, $aIngred) {
+    $aQuery = "SELECT SUM(".$aIngred.") AS total FROM orderTable WHERE pickedUp=\"false\" AND expired=\"false\"";
+    
+    $result = mysqli_query($aConnection, $aQuery);
+    $row = mysqli_fetch_array($result);
+    if (!$row) {
+            // echo "unable to fetch ordertime";
+            returnFailed();
+    }
+// echo "total: ".intval($row['total']);
+    return intval($row['total']);
+            
+}
+
 // ini_set('display_errors', 'On');
 // error_reporting(E_ALL);
 
@@ -56,42 +79,6 @@ function returnFailed(){
         returnFailedAllocate();
     }
 
-    $count = 0;
-// echo "Initialized count";
-   
-    $query = "UPDATE orderTable SET ";
-    if ($_POST["rIngred0"] == 1) {
-        $count++;
-        $query .= "ing0=100, "; 
-    }
-    if ($_POST["rIngred1"] == 1) {
-        $query .= "ing1=100, ";
-        $count++;
-    }
-    if ($_POST["rIngred2"] == 1) {
-        $query .= "ing2=100, ";
-        $count++;
-    }
-    if ($_POST["rIngred3"] == 1) {
-        $query .= "ing3=100, ";
-        $count++;
-    }
-    if ($_POST["rIngred4"] == 1) {
-        $query .= "ing4=100, ";
-        $count++;
-    }
-    if ($_POST["rIngred5"] == 1) {
-        $query .= "ing5=100, ";
-        $count++;
-    }
-    
-    if ($count == 0) {
-        // echo "No ingred marked to update"
-        returnFailed();
-    }
- 
-    $query = chop($query,", ");
-    $query .= " WHERE orderID=\"0\"";
 
     $dbHost="localhost"; // Host name 
     $dbUsername="root"; // Mysql username 
@@ -111,13 +98,55 @@ function returnFailed(){
             returnFailedAllocate();
     }
 
-    $result = mysqli_query($dbCon, $query);
-    // $row = mysqli_fetch_array($result);
-    if (!$result) {
-//            echo "unable to update orderTable";
-            returnFailed();
+    $count = 0;
+    $baseAmount = 100;
+// echo "Initialized count";
+   
+    $query = "UPDATE orderTable SET ";
+    if ($_POST["rIngred0"] == 1) {
+        
+        $temp = $baseAmount - getReservedAmount($dbCon, "ing0");
+        $count++;
+        $query .= "ing0=".$temp.", ";
     }
+    if ($_POST["rIngred1"] == 1) {
+        $temp = $baseAmount - getReservedAmount($dbCon, "ing1");
+        $count++;
+        $query .= "ing1=".$temp.", ";
+    }
+    if ($_POST["rIngred2"] == 1) {
+        $temp = $baseAmount - getReservedAmount($dbCon, "ing2");
+        $count++;
+        $query .= "ing2=".$temp.", ";
+    }
+    if ($_POST["rIngred3"] == 1) {
+        $temp = $baseAmount - getReservedAmount($dbCon, "ing3");
+        $count++;
+        $query .= "ing3=".$temp.", ";
+    }
+    if ($_POST["rIngred4"] == 1) {
+        $temp = $baseAmount - getReservedAmount($dbCon, "ing4");
+        $count++;
+        $query .= "ing4=".$temp.", ";
+    }
+    if ($_POST["rIngred5"] == 1) {
+        $temp = $baseAmount - getReservedAmount($dbCon, "ing5");
+        $count++;
+        $query .= "ing5=".$temp.", ";
+    }
+    
+    if ($count == 0) {
+        // echo "No ingred marked to update"
+        returnFailed();
+    }
+ 
+    $query = chop($query,", ");
+// echo "Query: " . $query;    
+    $query .= " WHERE orderID=\"0\"";
+    updateSQL($dbCon, $query);
+    
 
     $arr = array ('success'=>1);
     echo json_encode($arr);
 ?>
+
