@@ -2,18 +2,17 @@
 
 function returnFailed(){
 // return 0 for failed.  
-        $arr = array ('success'=>0);
+    $arr = array ('success'=>0);
     echo json_encode($arr);
     die();
-
 }
 
 function updateSQL($aConnection, $aQuery) {
     $result = mysqli_query($aConnection, $aQuery);
     // $row = mysqli_fetch_array($result);
     if (!$result) {
-//            echo "unable to update orderTable";
-            returnFailed();
+//        echo "unable to update orderTable";
+        returnFailed();
     }
 }
 
@@ -23,10 +22,10 @@ function getReservedAmount($aConnection, $aIngred) {
     $result = mysqli_query($aConnection, $aQuery);
     $row = mysqli_fetch_array($result);
     if (!$row) {
-            // echo "unable to fetch ordertime";
-            returnFailed();
+//        echo "unable to fetch ordertime";
+        returnFailed();
     }
-// echo "total: ".intval($row['total']);
+//    echo "total: ".intval($row['total']);
     return intval($row['total']);
             
 }
@@ -89,13 +88,13 @@ function getReservedAmount($aConnection, $aIngred) {
     $dbCon = mysqli_connect("$dbHost", "$dbUsername", "$dbPassword", "$dbName");
 
     if (mysqli_connect_errno($dbCon)) {
-            // echo "Failed to connect to MySQL: " . mysqli_connect_error();
-            returnFailed();
+        // echo "Failed to connect to MySQL: " . mysqli_connect_error();
+        returnFailed();
     } 
 
     if (!mysqli_set_charset($dbCon, "utf8")) {
-            // echo "Failed to set charset";
-            returnFailedAllocate();
+        // echo "Failed to set charset";
+        returnFailedAllocate();
     }
 
     $count = 0;
@@ -144,7 +143,6 @@ function getReservedAmount($aConnection, $aIngred) {
 // echo "Query: " . $query;    
     $query .= " WHERE orderID=\"0\"";
     updateSQL($dbCon, $query);
-    
 
     $arr = array ('success'=>1);
     echo json_encode($arr);
