@@ -12,7 +12,7 @@ function returnFailed(){
 
 
         if (!isset($_POST["barcode"])) {
-                returnFailedAllocate();
+                returnFailed();
         }
 
         $barcode = $_POST["barcode"];
@@ -34,7 +34,7 @@ function returnFailed(){
 
         if (!mysqli_set_charset($dbCon, "utf8")) {
                 // echo "Failed to set charset";
-                returnFailedAllocate();
+                returnFailed();
         }
 
         // select orderTIme and subtract 600s (10 Mins) update orderTime
