@@ -116,6 +116,8 @@ function returnFailedAllocate(){
 	$cIngred4 = intval($row['ing4']);
 	$cIngred5 = intval($row['ing5']);
 
+	$numValid = 0;
+
 	// echo $cIngred0;
 	if ($rIngred0 > 0) {
 		if ($cIngred0 - $rIngred0 < 0) {
@@ -123,6 +125,7 @@ function returnFailedAllocate(){
 			returnFailedAllocate();
 		}
 		$cIngred0 = $cIngred0 - $rIngred0;
+		$numValid++;
 	}
 
 	if ($rIngred0 > 0) {
@@ -131,6 +134,7 @@ function returnFailedAllocate(){
 			returnFailedAllocate();
 		}
 		$cIngred1 = $cIngred1 - $rIngred1;
+		$numValid++;
 	}
 
 	if ($rIngred2 > 0) {
@@ -139,6 +143,7 @@ function returnFailedAllocate(){
 			returnFailedAllocate();
 		}
 		$cIngred2 = $cIngred2 - $rIngred2;
+		$numValid++;
 	}
 
 	if ($rIngred3 > 0) {
@@ -147,6 +152,7 @@ function returnFailedAllocate(){
 			returnFailedAllocate();
 		}
 		$cIngred3 = $cIngred3 - $rIngred3;
+		$numValid++;
 	}
 
 	if ($rIngred4 > 0) {
@@ -155,6 +161,7 @@ function returnFailedAllocate(){
 			returnFailedAllocate();
 		}
 		$cIngred4 = $cIngred4 - $rIngred4;
+		$numValid++;
 	}
 
 	if ($rIngred5 > 0) {
@@ -163,8 +170,12 @@ function returnFailedAllocate(){
 			returnFailedAllocate();
 		}
 		$cIngred5 = $cIngred5 - $rIngred5;
+		$numValid++;
 	}
 
+	if ($numValid < 1 ) {
+		returnFailedAllocate();
+	}
 	// echo "got past ingred compares\n";
 
 	$query = "UPDATE orderTable SET ing0=" . $cIngred0 . ", ing1=" . $cIngred1 . ", ing2=" . $cIngred2 . ", ing3=" . $cIngred3 . ", ing4=" . $cIngred4 . ", ing5=" . $cIngred5 . " WHERE orderID=\"0\"";
