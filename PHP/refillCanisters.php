@@ -33,6 +33,8 @@ function getReservedAmount($aConnection, $aIngred) {
 // ini_set('display_errors', 'On');
 // error_reporting(E_ALL);
 
+    header('Content-Type: application/json');
+
 
     if (!isset($_POST["rIngred0"])) {
             returnFailed();

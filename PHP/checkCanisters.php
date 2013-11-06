@@ -35,7 +35,6 @@ function returnFailedAllocate(){
 	$query = "SELECT ing0, ing1, ing2, ing3, ing4, ing5 FROM orderTable WHERE orderID=\"0\"";
 	$result = mysqli_query($dbCon, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-	echo $row;
 	if (!$row) {
 		// echo 'unable to fetch row';
 	 	returnFailedAllocate();		
