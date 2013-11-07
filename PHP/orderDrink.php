@@ -129,7 +129,7 @@ function returnFailedAllocate(){
 		$numValid++;
 	}
 
-	if ($rIngred0 > 0) {
+	if ($rIngred1 > 0) {
 		if ($cIngred1 - $rIngred1 < 0) {
 			// echo "error ingredient 1";
 			returnFailedAllocate();
