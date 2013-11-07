@@ -56,10 +56,10 @@ function returnFailedAllocate(){
 	$remaining_row[4] += $unreserved_row[4];
 	$remaining_row[5] += $unreserved_row[5];
 
-	echo '{"remaining": ["'
+	echo '{"remaining": ["';
     echo json_encode($remaining_row);
-    echo '],"unreserved": ['
+    echo '],"unreserved": [';
     echo json_encode($unreserved_row);
-    echo ']}'
+    echo ']}';
 
 ?>
