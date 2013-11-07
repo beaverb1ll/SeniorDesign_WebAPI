@@ -27,6 +27,7 @@ function returnFailedAllocate(){
 // ini_set('display_errors', 'On');
 // error_reporting(E_ALL);
 
+	header('Content-Type: application/json');
 
 	$dbHost="localhost"; // Host name 
 	$dbUsername="root"; // Mysql username 
