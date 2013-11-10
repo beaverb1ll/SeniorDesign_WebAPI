@@ -63,7 +63,7 @@ function exitWithBarcodeAndTime($barcode = -1, $timeRemaining = -1) {
 	$date = date_create();
 	$currentTime = date_timestamp_get($date);
 
-	$remainingTime = $currentTime - $orderTime + 600;
+	$remainingTime = $orderTime + 600 - $currentTime;
 	if ($remainingTime < 0) {
 		$remainingTime = -1;
 	}
