@@ -203,7 +203,8 @@ function returnFailedAllocate(){
 		returnFailedAllocate();
 	}
 
-	$arr = array ('barcode'=>$barcode, 'expireTime'=>$time);
+	$expireTime = $time+600;
+	$arr = array ('barcode'=>$barcode, 'expireTime'=>$expireTime);
     echo json_encode($arr);
 
 ?>
