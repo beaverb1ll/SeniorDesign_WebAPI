@@ -18,7 +18,7 @@ function getGUID(){
 }
 
 function returnFailedAllocate(){
-	$arr = array ('barcode'=>-1);
+	$arr = array ('barcode'=>-1, 'expireTime'=>-1);
     echo json_encode($arr);
 	die();
 
@@ -203,7 +203,7 @@ function returnFailedAllocate(){
 		returnFailedAllocate();
 	}
 
-	$arr = array ('barcode'=>$barcode);
+	$arr = array ('barcode'=>$barcode, 'expireTime'=>$time);
     echo json_encode($arr);
 
 ?>
