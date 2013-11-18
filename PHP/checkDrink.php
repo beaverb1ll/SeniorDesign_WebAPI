@@ -8,8 +8,8 @@ function returnFailed(){
    exitWithBarcodeAndTime();
 }
 
-function exitWithBarcodeAndTime($barcode = -1, $timeRemaining = -1) {
-	$arr = array('barcode'=>$barcode, 'time'=>$timeRemaining);
+function exitWithBarcodeAndTime($barcode = -1, $timeExpires = -1) {
+	$arr = array('barcode'=>$barcode, 'time'=>$timeExpires);
 	echo json_encode($arr);
 	die();
 }
@@ -58,15 +58,7 @@ function exitWithBarcodeAndTime($barcode = -1, $timeRemaining = -1) {
 
 	$orderTime = intval($row['orderTime']);
 
-	// fetch current Time
-	date_default_timezone_set("America/New_York");
-	$date = date_create();
-	$currentTime = date_timestamp_get($date);
+	$expireTime = $orderTime + 600;
 
-	$remainingTime = $orderTime + 600 - $currentTime;
-	if ($remainingTime < 0) {
-		$remainingTime = -1;
-	}
-
-	exitWithBarcodeAndTime($barcode, $remainingTime);
+	exitWithBarcodeAndTime($barcode, $expireTime);
 ?>
