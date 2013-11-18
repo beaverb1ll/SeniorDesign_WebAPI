@@ -203,7 +203,9 @@ function returnFailedAllocate(){
 		returnFailedAllocate();
 	}
 
+	$createBarcodeImage = '/usr/local/bin/zint -b 92 --scale=10 -o /srv/http/barcodeImages/' . $barcode . '.png -d "' . $barcode . '"';
 	$expireTime = $time+600;
+	exec("/usr/local/bin/zint ")
 	$arr = array ('barcode'=>$barcode, 'expireTime'=>$expireTime);
     echo json_encode($arr);
 
