@@ -28,6 +28,19 @@
             "ingredLoc": [
                 "1"
             ]
+        },
+        {
+            "name": "Apple Juice",
+            "ingreds": [
+                "4"
+            ],
+            "ingredNames": [
+                "Apple"
+            ],
+            "picName": "heart-empty.png",
+            "ingredLoc": [
+                "1"
+            ]
         }
     ]
 }
