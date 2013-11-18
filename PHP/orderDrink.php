@@ -203,7 +203,7 @@ function returnFailedAllocate(){
 		returnFailedAllocate();
 	}
 
-	$createBarcodeImage = '/usr/local/bin/zint -b 92 --scale=10 -o /srv/http/barcodeImages/' . $barcode . '.png -d "' . $barcode . '"';
+	$createBarcodeImage = '/usr/local/bin/zint -b 92 --scale=10 -o /srv/http/barcodeImages/' . $barcode . '.png --data=' . $barcode;
 	exec($createBarcodeImage);
 
 	$expireTime = $time+600;
