@@ -80,12 +80,12 @@ function returnFailedAllocate(){
     }
 
     // convert strings to integers
-	$rIngred0 = intval($_POST["rIngred0"]);
-	$rIngred1 = intval($_POST["rIngred1"]);
-	$rIngred2 = intval($_POST["rIngred2"]);
-	$rIngred3 = intval($_POST["rIngred3"]);
-	$rIngred4 = intval($_POST["rIngred4"]);
-	$rIngred5 = intval($_POST["rIngred5"]);
+	$rIngred0 = floatval($_POST["rIngred0"]);
+	$rIngred1 = floatval($_POST["rIngred1"]);
+	$rIngred2 = floatval($_POST["rIngred2"]);
+	$rIngred3 = floatval($_POST["rIngred3"]);
+	$rIngred4 = floatval($_POST["rIngred4"]);
+	$rIngred5 = floatval($_POST["rIngred5"]);
 
 	// Connect to server and select databse.
 	$dbCon = mysqli_connect("$dbHost", "$dbUsername", "$dbPassword", "$dbName");
