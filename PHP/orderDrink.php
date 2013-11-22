@@ -18,7 +18,7 @@ function getGUID(){
 }
 
 function returnFailedAllocate(){
-	$arr = array ('barcode'=>-1);
+	$arr = array ('barcode'=>-1, 'expireTime'=>-1);
     echo json_encode($arr);
 	die();
 
@@ -27,6 +27,7 @@ function returnFailedAllocate(){
 // ini_set('display_errors', 'On');
 // error_reporting(E_ALL);
 
+	header('Content-Type: application/json');
 
 	$dbHost="localhost"; // Host name 
 	$dbUsername="root"; // Mysql username 
@@ -79,12 +80,12 @@ function returnFailedAllocate(){
     }
 
     // convert strings to integers
-	$rIngred0 = intval($_POST["rIngred0"]);
-	$rIngred1 = intval($_POST["rIngred1"]);
-	$rIngred2 = intval($_POST["rIngred2"]);
-	$rIngred3 = intval($_POST["rIngred3"]);
-	$rIngred4 = intval($_POST["rIngred4"]);
-	$rIngred5 = intval($_POST["rIngred5"]);
+	$rIngred0 = floatval($_POST["rIngred0"]);
+	$rIngred1 = floatval($_POST["rIngred1"]);
+	$rIngred2 = floatval($_POST["rIngred2"]);
+	$rIngred3 = floatval($_POST["rIngred3"]);
+	$rIngred4 = floatval($_POST["rIngred4"]);
+	$rIngred5 = floatval($_POST["rIngred5"]);
 
 	// Connect to server and select databse.
 	$dbCon = mysqli_connect("$dbHost", "$dbUsername", "$dbPassword", "$dbName");
@@ -128,7 +129,7 @@ function returnFailedAllocate(){
 		$numValid++;
 	}
 
-	if ($rIngred0 > 0) {
+	if ($rIngred1 > 0) {
 		if ($cIngred1 - $rIngred1 < 0) {
 			// echo "error ingredient 1";
 			returnFailedAllocate();
@@ -202,7 +203,11 @@ function returnFailedAllocate(){
 		returnFailedAllocate();
 	}
 
-	$arr = array ('barcode'=>$barcode);
+	$createBarcodeImage = '/usr/local/bin/zint -b 92 --scale=10 -o /srv/http/barcodeImages/' . $barcode . '.png --data=' . $barcode;
+	exec($createBarcodeImage);
+
+	$expireTime = $time+600;
+	$arr = array ('barcode'=>$barcode, 'expireTime'=>$expireTime);
     echo json_encode($arr);
 
 ?>

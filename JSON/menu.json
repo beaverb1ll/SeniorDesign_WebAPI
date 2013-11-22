@@ -1,73 +1,46 @@
 {
-	"Menu":[
-		{
-		"Name": "", 
-
-
-			"Ingred0": {
-				"Description": "xxxx", 
-				"Amount": "xxxx"
-			}, 
-
-			"Ingred1": {
-				"Description": "xxxx", 
-				"Amount": "xxxx"
-			}, 
-
-			"Ingred2": {
-				"Description": "xxxx", 
-				"Amount": "xxxx"
-			}, 
-
-			"Ingred3": {
-				"Description": "xxxx", 
-				"Amount": "xxxx"
-			}, 
-
-			"Ingred4": {
-				"Description": "xxxx", 
-				"Amount": "xxxx"
-			}, 
-
-			"Ingred5": {
-				"Description": "xxxx", 
-				"Amount": "xxxx"
-			}
-		},
-
-		{
-			"Name": "", 
-
-
-			"Ingred0": {
-				"Description": "xxxx", 
-				"Amount": "xxxx"
-			}, 
-
-			"Ingred1": {
-				"Description": "xxxx", 
-				"Amount": "xxxx"
-			}, 
-
-			"Ingred2": {
-				"Description": "xxxx", 
-				"Amount": "xxxx"
-			}, 
-
-			"Ingred3": {
-				"Description": "xxxx", 
-				"Amount": "xxxx"
-			}, 
-
-			"Ingred4": {
-				"Description": "xxxx", 
-				"Amount": "xxxx"
-			}, 
-
-			"Ingred5": {
-				"Description": "xxxx", 
-				"Amount": "xxxx"
-			}
-		 }
-	]
+    "theMenu": [
+        {
+            "name": "Rum & Coke",
+            "ingreds": [
+                "2.5",
+                "2.2"
+            ],
+            "ingredNames": [
+                "Rum",
+                "Coke"
+            ],
+            "picName": "heart-empty.png",
+            "ingredLoc": [
+                "0",
+                "4"
+            ]
+        },
+        {
+            "name": "Apple Juice",
+            "ingreds": [
+                "4"
+            ],
+            "ingredNames": [
+                "Apple"
+            ],
+            "picName": "heart-empty.png",
+            "ingredLoc": [
+                "1"
+            ]
+        },
+        {
+            "name": "Apple Juice",
+            "ingreds": [
+                "4"
+            ],
+            "ingredNames": [
+                "Apple"
+            ],
+            "picName": "heart-empty.png",
+            "ingredLoc": [
+                "1"
+            ]
+        }
+    ]
 }
