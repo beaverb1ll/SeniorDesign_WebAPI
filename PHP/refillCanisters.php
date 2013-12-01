@@ -100,7 +100,7 @@ function getReservedAmount($aConnection, $aIngred) {
     }
 
     $count = 0;
-    $baseAmount = 100;
+    $baseAmount = 68;
 // echo "Initialized count";
    
     $query = "UPDATE orderTable SET ";
