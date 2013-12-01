@@ -1,46 +1,76 @@
 {
     "theMenu": [
         {
-            "name": "Rum & Coke",
+            "name": "Orange & Pineapple",
             "ingreds": [
-                "2.5",
-                "2.2"
+                "6",
+                "6"
             ],
             "ingredNames": [
-                "Rum",
-                "Coke"
+                "Orange Juice",
+                "Pineapple Juice"
+            ],
+            "picName": "heart-empty.png",
+            "ingredLoc": [
+                "4",
+                "3"
+            ]
+        },
+        {
+            "name": "Cranberry & Apple",
+            "ingreds": [
+                "4",
+                "8"
+            ],
+            "ingredNames": [
+                "Cranberry Juice",
+                "Apple Juice"
             ],
             "picName": "heart-empty.png",
             "ingredLoc": [
                 "0",
-                "4"
+                "2"
             ]
         },
         {
-            "name": "Apple Juice",
+            "name": "Orange Juice",
             "ingreds": [
-                "4"
+                "12"
             ],
             "ingredNames": [
-                "Apple"
+                "Orange Juice"
             ],
             "picName": "heart-empty.png",
             "ingredLoc": [
-                "1"
+                "4"
             ]
         },
         {
-            "name": "Apple Juice",
+            "name": "Grape Juice",
             "ingreds": [
-                "4"
+                "8"
             ],
             "ingredNames": [
-                "Apple"
+                "Grape Juice"
+            ],
+            "picName": "heart-empty.png",
+            "ingredLoc": [
+                "5"
+            ]
+        },
+        {
+            "name": "Lemonade",
+            "ingreds": [
+                "12"
+            ],
+            "ingredNames": [
+                "Lemonade"
             ],
             "picName": "heart-empty.png",
             "ingredLoc": [
                 "1"
             ]
         }
+        
     ]
 }
