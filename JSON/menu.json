@@ -7,8 +7,8 @@
                 "6"
             ],
             "ingredNames": [
-                "Orange Juice",
-                "Pineapple Juice"
+                "Orange",
+                "Pineapple"
             ],
             "picName": "heart-empty.png",
             "ingredLoc": [
@@ -23,8 +23,8 @@
                 "8"
             ],
             "ingredNames": [
-                "Cranberry Juice",
-                "Apple Juice"
+                "Cranberry",
+                "Apple"
             ],
             "picName": "heart-empty.png",
             "ingredLoc": [
@@ -38,7 +38,7 @@
                 "12"
             ],
             "ingredNames": [
-                "Orange Juice"
+                "Orange"
             ],
             "picName": "heart-empty.png",
             "ingredLoc": [
@@ -51,7 +51,7 @@
                 "8"
             ],
             "ingredNames": [
-                "Grape Juice"
+                "Grape"
             ],
             "picName": "heart-empty.png",
             "ingredLoc": [
